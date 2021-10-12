@@ -47,4 +47,15 @@ public class KafkaWatcherTest {
         kafkaWatcher.update();
         countDownLatch.await(1, TimeUnit.MINUTES);
     }
+
+    @Test
+    public void testConsumerCallback() throws InterruptedException {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+        kafkaWatcher.setUpdateCallback((s)-> {
+            countDownLatch.countDown();
+            System.out.println("[callback]" + s);
+        });
+        kafkaWatcher.update();
+        countDownLatch.await(1, TimeUnit.MINUTES);
+    }
 }

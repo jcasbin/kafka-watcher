@@ -16,9 +16,11 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.function.Consumer;
 
 public class KafkaWatcher implements Watcher{
     private Runnable updateCallback;
+    private Consumer<String> updateConsumerCallback;
     private final String localId;
     private final Map<String,Object> producerProps;
     private final Map<String,Object> consumerProps;
@@ -36,6 +38,11 @@ public class KafkaWatcher implements Watcher{
     @Override
     public void setUpdateCallback(Runnable runnable) {
         this.updateCallback=runnable;
+    }
+
+    @Override
+    public void setUpdateCallback(Consumer<String> consumer) {
+        this.updateConsumerCallback = consumer;
     }
 
     @Override
@@ -72,6 +79,9 @@ public class KafkaWatcher implements Watcher{
                         log.info(String.format("topic: %s, partition: %s, offset: %s, key: %s, value: %s",
                                 record.topic(), record.partition(), record.offset(), record.key(), record.value()));
                         updateCallback.run();
+                        if (updateConsumerCallback != null)
+                            updateConsumerCallback.accept(String.format("topic: %s, partition: %s, offset: %s, key: %s, value: %s",
+                                record.topic(), record.partition(), record.offset(), record.key(), record.value()));
                     }
                 }
             }

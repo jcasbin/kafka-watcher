@@ -62,4 +62,4 @@ public static void main(String[] args) {
 
 ## License
 
-This project is under Apache 2.0 License. See the [LICENSE](https://github.com/jcasbin/kafka-watcher/blob/master/LICENSE) file for the full license text.
+This project is under Apache 2.0 License. See the [LICENSE](LICENSE) file for the full license text.

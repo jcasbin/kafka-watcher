@@ -1,7 +1,9 @@
 Kafka Watcher
 ---
 [![GitHub Actions](https://github.com/jcasbin/kafka-watcher/actions/workflows/ci.yml/badge.svg)](https://github.com/jcasbin/kafka-watcher/actions/workflows/ci.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/org.casbin/kafka-watcher.svg)](https://central.sonatype.com/artifact/org.casbin/kafka-watcher)
 ![License](https://img.shields.io/github/license/jcasbin/kafka-watcher)
+
 
 KafkaWatcher is a [Kafka](https://kafka.apache.org) watcher for [jCasbin](https://github.com/casbin/jcasbin).
 
@@ -9,7 +11,13 @@ KafkaWatcher is a [Kafka](https://kafka.apache.org) watcher for [jCasbin](https:
 
 For Maven
 
-There is no maven-central package, please download and package by yourself
+``` xml
+<dependency>
+    <groupId>org.casbin</groupId>
+    <artifactId>kafka-watcher</artifactId>
+    <version>1.1.0</version>
+</dependency>
+```
 
 ## Simple Example
 
